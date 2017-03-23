@@ -47,6 +47,8 @@ namespace OdeToFood
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseWelcomePage("/welcome");
+
             app.Run(async (context) =>
             {
                 var greetingMessage = greeter.GetGreeting();
