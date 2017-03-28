@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Reflection.Metadata;
-using OdeToFood.Models;
+using OdeToFood.Entities;
 
 namespace OdeToFood.Services
 {
@@ -12,14 +13,27 @@ namespace OdeToFood.Services
         {
             _restaurants = new List<Restaurant>
             {
-                new Restaurant {Id = 1, Name = "XYZ"},
-                new Restaurant {Id = 2, Name = "BezSmaku"}
+                new Restaurant {Id = 1, Name = "XYZ", Cuisine = CuisineType.Polish},
+                new Restaurant {Id = 2, Name = "BezSmaku", Cuisine = CuisineType.Italian}
             };
         }
 
-        public List<Restaurant> GetAllRestaurants()
+        public IEnumerable<Restaurant> GetAllRestaurants()
         {
             return _restaurants;
+        }
+
+        public Restaurant Get(int id)
+        {
+            return _restaurants.FirstOrDefault(r => r.Id == id);
+        }
+
+        public Restaurant Add(Restaurant newRestaurant)
+        {
+            newRestaurant.Id = _restaurants.Max(r => r.Id) + 1;
+            _restaurants.Add(newRestaurant);
+
+            return newRestaurant;
         }
     }
 }

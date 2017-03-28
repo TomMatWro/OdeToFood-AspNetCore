@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
-using OdeToFood.Models;
+using OdeToFood.Entities;
 
 namespace OdeToFood.Services
 {
     public interface IRestaurantData
     {
-        List<Restaurant> GetAllRestaurants();
+        IEnumerable<Restaurant> GetAllRestaurants();
+        Restaurant Get(int id);
+        Restaurant Add(Restaurant newRestaurant);
     }
 }
