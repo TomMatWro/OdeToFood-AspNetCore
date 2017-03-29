@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using OdeToFood.Services;
 using OdeToFood.ViewModels;
 
@@ -27,9 +28,14 @@ namespace OdeToFood.Controllers
             return View(model);
         }
 
-        public string Details(int id)
+        public IActionResult Details(int id)
         {
-            return id.ToString();
+            var model = _restaurantsData.Get(id);
+            if (model == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            return View(model);
         }
            
      }

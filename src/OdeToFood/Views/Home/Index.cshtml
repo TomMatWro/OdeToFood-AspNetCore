@@ -1,4 +1,5 @@
 ﻿
+@using Microsoft.EntityFrameworkCore.Metadata.Internal
 @using OdeToFood.ViewModels
 @model HomePageViewModel
 
@@ -14,7 +15,9 @@
     {
         <tr>
             <td>@restaurant.Id</td>
-            <td>@restaurant.Name</td>
+            <td>
+                @Html.ActionLink(@restaurant.Name, "Details", new {  id = restaurant.Id})
+            </td>
         </tr>
     }
 </table>

@@ -1,5 +1,10 @@
-﻿@model OdeToFood.Entities.Restaurant
+﻿@using Microsoft.EntityFrameworkCore.Metadata.Internal
+@using OdeToFood.Controllers
+@model OdeToFood.Entities.Restaurant
 
 <h1>@Model.Name</h1>
 
 <div>... details ...</div>
+<div>
+    @Html.ActionLink("Home", nameof(HomeController.Index))
+</div>
