@@ -9,9 +9,9 @@
 
     public enum CuisineType 
     {
+        None,
         Italian,
         Chinese,
-        None,
         Polish
     }
 }

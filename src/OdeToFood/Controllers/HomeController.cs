@@ -2,6 +2,7 @@
 using System.Threading;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using OdeToFood.Entities;
 using OdeToFood.Services;
 using OdeToFood.ViewModels;
 
@@ -9,8 +10,8 @@ namespace OdeToFood.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IRestaurantData _restaurantsData;
-        private readonly IGreeter _greeter;
+        private IRestaurantData _restaurantsData;
+        private IGreeter _greeter;
 
         public HomeController(IRestaurantData restaurantsData, IGreeter greeter)
         {
@@ -36,6 +37,26 @@ namespace OdeToFood.Controllers
                 return RedirectToAction(nameof(Index));
             }
             return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(RestaurantEditViewModel model)
+        {
+            var newRestaurant = new Restaurant
+            {
+                Cuisine = model.Cuisine,
+                Name = model.Name
+            };
+
+            newRestaurant = _restaurantsData.Add(newRestaurant);
+
+            return View("Details", newRestaurant);
         }
            
      }

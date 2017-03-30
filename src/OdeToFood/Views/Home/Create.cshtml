@@ -13,7 +13,7 @@
             </div>
             <div>
                 @Html.LabelFor(m => m.Cuisine)
-                @Html.DropDownListFor(m => m.Cuisine, Html.GetEnumSelectList(typeof (Restaurant)))
+                @Html.DropDownListFor(m => m.Cuisine, Html.GetEnumSelectList(typeof(CuisineType)))
             </div>
             <div>
                 <input type="submit" value="Create"/>

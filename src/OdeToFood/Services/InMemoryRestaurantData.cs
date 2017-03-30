@@ -7,9 +7,9 @@ namespace OdeToFood.Services
 {
     public class InMemoryRestaurantData : IRestaurantData
     {
-        private List<Restaurant> _restaurants;
+        private static List<Restaurant> _restaurants;
 
-        public InMemoryRestaurantData()
+        static InMemoryRestaurantData()
         {
             _restaurants = new List<Restaurant>
             {
